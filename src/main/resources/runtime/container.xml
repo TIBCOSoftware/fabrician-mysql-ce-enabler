@@ -1,0 +1,201 @@
+<container class="com.datasynapse.fabric.container.ExecContainer"
+	name="MySqlCEEnabler">
+
+	<import package="com.datasynapse.fabric.common" />
+	<import package="com.datasynapse.fabric.common.script" />
+	<import package="com.datasynapse.fabric.container" />
+	<import package="com.datasynapse.fabric.util" />
+
+
+	<property name="name" value="${project.name}" />
+	<property name="version" value="${project.version}" />
+	<property name="distributionVersion" value="${project.version}" />
+	<property name="blocking" value="false" />
+	<property name="supportedDomainType" value="Default:${component.type.version}" />
+	<property name="shutdownTimeout" value="60000" />
+	<property name="description" value="${project.description}" />
+
+	<script class="Script">
+		<property name="languageVersion" value="2.5" />
+		<property name="name" value="MySQLServer.py" />
+		<property name="language" value="python" />
+	</script>
+
+	<unixcommand class="LifecycleCommand">
+		<property name="shutdownCommand" value="" />
+		<property name="startupCommand" value="" />
+	</unixcommand>
+
+	<windowscommand class="LifecycleCommand">
+		<property name="shutdownCommand" value="" />
+		<property name="startupCommand" value="" />
+	</windowscommand>
+
+	<supportedFeature class="Feature">
+		<property name="name" value="Application Logging Support" />
+		<property name="description"
+			value="Support for handling of custom application logs" />
+		<property name="infoDescription"
+			value="Specify how often checkpoint copies of application log files are made, and whether or not application logs are archived upon deactivation." />
+		<property name="infoClass"
+			value="com.datasynapse.fabric.domain.featureinfo.ApplicationLoggingInfo" />
+	</supportedFeature>
+
+	<runtimecontexttemplate class="DefaultRuntimeContext">
+
+		<variable class="RuntimeContextVariable">
+			<property name="value" value="${CONTAINER_WORK_DIR}/mysql" />
+			<property name="autoIncrementType" value="None" />
+			<property name="type" value="Environment" />
+			<property name="description" value="MySQL base directory" />
+			<property name="name" value="MYSQL_BASE" />
+		</variable>
+
+		<variable class="RuntimeContextVariable">
+			<property name="value" value="${CONTAINER_WORK_DIR}/db" />
+			<property name="autoIncrementType" value="None" />
+			<property name="type" value="Environment" />
+			<property name="description" value="MySQL home directory" />
+			<property name="name" value="MYSQL_HOME" />
+		</variable>
+
+
+		<variable class="RuntimeContextVariable">
+			<property name="value" value="${CONTAINER_WORK_DIR}/conf/my.cnf" />
+			<property name="autoIncrementType" value="None" />
+			<property name="type" value="Environment" />
+			<property name="description" value="MySQL config file" />
+			<property name="name" value="MYSQL_CONFIG_FILE" />
+		</variable>
+		
+		<variable class="RuntimeContextVariable">
+			<property name="value"  value="${CONTAINER_WORK_DIR}/sql/init-db.sql" />
+			<property name="autoIncrementType" value="None" />
+			<property name="type" value="Environment" />
+			<property name="description" value="MySQl init  SQL script" />
+			<property name="name" value="MYSQL_INIT_SQL" />
+		</variable>
+
+		<variable class="RuntimeContextVariable">
+			<property name="value" value="3306" />
+			<property name="autoIncrementType" value="Numeric" />
+			<property name="type" value="String" />
+			<property name="description" value="TNS Listener TCP port" />
+			<property name="name" value="TCP_PORT" />
+		</variable>
+
+		<variable class="RuntimeContextVariable">
+			<property name="value" value="mydb" />
+			<property name="autoIncrementType" value="None" />
+			<property name="type" value="String" />
+			<property name="description" value="Database name" />
+			<property name="name" value="DATABASE_NAME" />
+		</variable>
+
+		<variable class="RuntimeContextVariable">
+			<property name="value"  value="MySql09!" />
+			<property name="autoIncrementType" value="None" />
+			<property name="type" value="String" />
+			<property name="description" value="Database password" />
+			<property name="name" value="DATABASE_PASSWORD" />
+		</variable>
+
+		<variable class="RuntimeContextVariable">
+			<property name="value" value="mydbuser" />
+			<property name="autoIncrementType" value="None" />
+			<property name="type" value="String" />
+			<property name="description" value="Database user" />
+			<property name="name" value="DATABASE_USER" />
+		</variable>
+
+		<variable class="RuntimeContextVariable">
+			<property name="value" value="${MYSQL_HOME}/data" />
+			<property name="autoIncrementType" value="None" />
+			<property name="type" value="String" />
+			<property name="description" value="MySQL data directory" />
+			<property name="name" value="MYSQL_DATA" />
+		</variable>
+
+		<variable class="RuntimeContextVariable">
+			<property name="value" value="" />
+			<property name="autoIncrementType" value="None" />
+			<property name="type" value="String" />
+			<property name="description" value="MySQL data clone" />
+			<property name="name" value="MYSQL_DATA_CLONE" />
+		</variable>
+
+		<variable class="RuntimeContextVariable">
+			<property name="value" value="${MYSQL_HOME}/tmp" />
+			<property name="autoIncrementType" value="None" />
+			<property name="type" value="Environment" />
+			<property name="description" value="TMP directory" />
+			<property name="name" value="TMPDIR" />
+		</variable>
+
+		<variable class="RuntimeContextVariable">
+			<property name="value" value="${TMPDIR}/mysql.sock" />
+			<property name="autoIncrementType" value="None" />
+			<property name="type" value="Environment" />
+			<property name="description" value="Unix socket" />
+			<property name="name" value="MYSQL_UNIX_PORT" />
+		</variable>
+
+
+		<variable class="RuntimeContextVariable">
+			<property name="value" value="innodb" />
+			<property name="autoIncrementType" value="None" />
+			<property name="type" value="String" />
+			<property name="description" value="Default MySQL stroage engine" />
+			<property name="name" value="DEFAULT_STORAGE_ENGINE" />
+		</variable>
+
+		<variable class="RuntimeContextVariable">
+			<property name="value" value="fabric" />
+			<property name="autoIncrementType" value="None" />
+			<property name="type" value="String" />
+			<property name="description" value="My Sql server user" />
+			<property name="name" value="MYSQL_SERVER_USER" />
+		</variable>
+
+		<variable class="RuntimeContextVariable">
+			<property name="value" value="fabric" />
+			<property name="autoIncrementType" value="None" />
+			<property name="type" value="String" />
+			<property name="description" value="My Sql server group" />
+			<property name="name" value="MYSQL_SERVER_GROUP" />
+		</variable>
+		
+		<variable class="RuntimeContextVariable">
+			<property name="value" value="MySql09!" />
+			<property name="autoIncrementType" value="None" />
+			<property name="type" value="String" />
+			<property name="description" value="Mysql Root Password" />
+			<property name="name" value="MYSQL_ROOT_PASSWD" />
+		</variable>
+
+		<variable class="RuntimeContextVariable">
+			<property name="name" value="START_POLL_PERIOD" />
+			<property name="value" value="10000" />
+			<property name="type" value="String" />
+			<property name="description" value="Start condition poll period" />
+		</variable>
+
+		<variable class="RuntimeContextVariable">
+			<property name="name" value="RUNNING_POLL_PERIOD" />
+			<property name="value" value="30000" />
+			<property name="type" value="String" />
+			<property name="description" value="Running condition poll period" />
+		</variable>
+
+		<variable class="RuntimeContextVariable">
+			<property name="name" value="COMPONENT_NAME" />
+			<property name="value" value="${container.getCurrentDomain().getName()}" />
+			<property name="type" value="String" />
+			<property name="description"
+				value="Silver Fabric Component name: This is always unique within a Silver Fabric Broker" />
+		</variable>
+
+	</runtimecontexttemplate>
+
+
+</container>

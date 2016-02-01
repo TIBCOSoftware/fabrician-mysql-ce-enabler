@@ -1,0 +1,17 @@
+<containerConfig name="MySqlCEEnabler">
+
+	<configFiles baseDir="conf" include="my.cnf">
+	
+		<regex pattern="port\s*=.*"  replacement="port=${TCP_PORT}"/>
+		<regex pattern="socket\s*=.*"  replacement="socket=${MYSQL_UNIX_PORT}"/>
+		<regex pattern="basedir\s*=.*"  replacement="basedir=${MYSQL_BASE}"/>
+		<regex pattern="datadir\s*=.*"  replacement="datadir=${MYSQL_DATA}"/>
+		<regex pattern="user\s*=.*"  replacement="user=${MYSQL_SERVER_USER}"/>
+		<regex pattern="group\s*=.*"  replacement="group=${MYSQL_SERVER_GROUP}"/>
+		<regex pattern="default-storage-engine\s*=.*"  replacement="default-storage-engine=${DEFAULT_STORAGE_ENGINE}"/>
+	</configFiles>
+	
+	<configFiles baseDir="sql" include="*.sql">
+		<velocity/>
+	</configFiles>
+</containerConfig>

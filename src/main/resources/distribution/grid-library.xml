@@ -1,0 +1,4 @@
+<grid-library os="${distribution.os}">
+	<grid-library-name>${distribution.name}</grid-library-name>
+	<grid-library-version>${distribution.version}</grid-library-version>
+</grid-library>

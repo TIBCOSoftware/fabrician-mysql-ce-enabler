@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly>
+	<id>runtime</id>
+	<baseDirectory>
+	</baseDirectory>
+	<formats>
+		<format>tar.gz</format>
+	</formats>
+	
+	<fileSets>
+	
+	<fileSet>
+			<directory>src/main/resources/runtime</directory>
+			<outputDirectory />
+			<includes>
+				<include>configure.xml</include>
+			</includes>
+		</fileSet>
+		
+		<fileSet>
+			<directory>src/main/resources/runtime</directory>
+			<outputDirectory />
+			<filtered>true</filtered>
+			<includes>
+				<include>container.xml</include>
+				<include>grid-library.xml</include>
+			</includes>
+		</fileSet>
+
+		<fileSet>
+			<directory>src/main/resources/runtime/scripts</directory>
+			<outputDirectory>scripts</outputDirectory>
+			<includes>
+				<include>*.py</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>src/main/resources/content/sql</directory>
+			<outputDirectory>content/sql</outputDirectory>
+			<includes>
+				<include>*</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>src/main/resources/content/conf</directory>
+			<outputDirectory>content/conf</outputDirectory>
+			<includes>
+				<include>*</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>${project.build.directory}/ds_jars</directory>
+			<outputDirectory>ds_jars</outputDirectory>
+			<includes>
+				<include>*</include>
+			</includes>
+		</fileSet>
+
+	</fileSets>
+</assembly>
